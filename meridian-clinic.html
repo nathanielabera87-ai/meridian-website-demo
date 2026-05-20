@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Health Clinic</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F3EE;
+    --cream-dark: #EDE7DD;
+    --forest: #1C3A2E;
+    --forest-mid: #2D5A45;
+    --forest-light: #3D7A5F;
+    --gold: #B8914A;
+    --gold-light: #D4AA6B;
+    --text: #1A1A18;
+    --text-mid: #4A4A42;
+    --text-light: #7A7A70;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 60px;
+    background: rgba(247, 243, 238, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(28, 58, 46, 0.08);
+    transition: padding 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--forest);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-mid);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--forest); }
+
+  .nav-cta {
+    background: var(--forest);
+    color: var(--cream) !important;
+    padding: 10px 24px;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    letter-spacing: 0.04em !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--forest-mid) !important; color: var(--cream) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--forest);
+    margin-bottom: 24px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-mid);
+    max-width: 420px;
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 16px 36px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--forest-mid); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--forest);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--forest);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(28, 58, 46, 0.12);
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--forest);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(28,58,46,0.15) 0%, rgba(28,58,46,0.05) 100%);
+  }
+
+  .hero-card {
+    position: absolute;
+    bottom: 60px;
+    left: 24px;
+    background: var(--white);
+    padding: 28px 32px;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(28,58,46,0.12);
+    z-index: 3;
+    max-width: 260px;
+  }
+
+  .hero-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 6px;
+  }
+
+  .hero-card-sub {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+
+  .availability-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold-light);
+  }
+
+  .dot.active {
+    background: #4CAF82;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .availability-label {
+    font-size: 12px;
+    color: var(--text-mid);
+    margin-left: 4px;
+  }
+
+  /* MARQUEE */
+  .marquee-strip {
+    background: var(--forest);
+    color: var(--cream-dark);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-inner {
+    display: inline-flex;
+    gap: 0;
+    animation: marquee 20s linear infinite;
+  }
+
+  .marquee-item {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 0 40px;
+  }
+
+  .marquee-dot {
+    color: var(--gold);
+    padding: 0 8px;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 120px 60px;
+    background: var(--cream);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 72px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1.15;
+    max-width: 520px;
+  }
+
+  .section-title em { font-style: italic; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 48px 40px;
+    transition: background 0.3s, transform 0.2s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover { background: var(--forest); transform: translateY(-4px); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover .service-icon { background: rgba(184,145,74,0.2); color: var(--gold-light); }
+  .service-card:hover .service-name { color: var(--cream); }
+  .service-card:hover .service-desc { color: rgba(247,243,238,0.65); }
+  .service-card:hover .service-link { color: var(--gold-light); }
+
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(28,58,46,0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 28px;
+    transition: background 0.3s, color 0.3s;
+    color: var(--forest);
+  }
+
+  .service-num {
+    position: absolute;
+    top: 40px; right: 40px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(28,58,46,0.06);
+    line-height: 1;
+    transition: color 0.3s;
+  }
+
+  .service-card:hover .service-num { color: rgba(247,243,238,0.06); }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 12px;
+    transition: color 0.3s;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    transition: color 0.3s;
+    margin-bottom: 24px;
+  }
+
+  .service-link {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--forest-light);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s;
+  }
+
+  .service-link::after { content: '→'; }
+
+  /* ABOUT */
+  .about {
+    padding: 120px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    background: var(--cream-dark);
+  }
+
+  .about-image-wrap {
+    position: relative;
+  }
+
+  .about-image-main {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .about-accent-box {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    background: var(--forest);
+    color: var(--cream);
+    padding: 36px 40px;
+    border-radius: 4px;
+    max-width: 220px;
+    box-shadow: 0 20px 50px rgba(28,58,46,0.2);
+  }
+
+  .about-accent-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    display: block;
+  }
+
+  .about-accent-label {
+    font-size: 12px;
+    color: rgba(247,243,238,0.65);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    display: block;
+  }
+
+  .about-content { padding-right: 20px; }
+
+  .about-body {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .about-values {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .value-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .value-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .value-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--forest);
+    letter-spacing: 0.01em;
+  }
+
+  /* TEAM */
+  .team {
+    padding: 120px 60px;
+    background: var(--cream);
+    text-align: center;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .team-card {
+    text-align: left;
+  }
+
+  .team-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    filter: grayscale(20%);
+    transition: filter 0.3s;
+  }
+
+  .team-card:hover .team-photo { filter: grayscale(0%); }
+
+  .team-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 4px;
+  }
+
+  .team-role {
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .team-bio {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.75;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 120px 60px;
+    background: var(--forest);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonials::before {
+    content: '"';
+    position: absolute;
+    top: -40px;
+    left: 40px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 300px;
+    font-weight: 300;
+    color: rgba(247,243,238,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .testimonials .section-eyebrow { color: var(--gold-light); }
+  .testimonials .section-eyebrow::before { background: var(--gold-light); }
+  .testimonials .section-title { color: var(--cream); max-width: 100%; }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .testimonial-card {
+    background: rgba(247,243,238,0.06);
+    border: 1px solid rgba(247,243,238,0.1);
+    padding: 40px;
+    border-radius: 4px;
+    transition: background 0.3s;
+  }
+
+  .testimonial-card:hover { background: rgba(247,243,238,0.1); }
+
+  .testimonial-stars {
+    color: var(--gold-light);
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+  }
+
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(247,243,238,0.85);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .testimonial-author {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+  }
+
+  .testimonial-city {
+    font-size: 12px;
+    color: rgba(247,243,238,0.4);
+    margin-top: 2px;
+  }
+
+  /* BOOKING */
+  .booking {
+    padding: 120px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background: var(--cream-dark);
+  }
+
+  .booking-form {
+    background: var(--white);
+    padding: 52px;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(28,58,46,0.08);
+  }
+
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+
+  .form-sub {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 36px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    border: 1px solid rgba(28,58,46,0.15);
+    border-radius: 2px;
+    padding: 12px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--forest);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 90px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--forest);
+    color: var(--cream);
+    border: none;
+    padding: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover { background: var(--forest-mid); transform: translateY(-1px); }
+
+  .booking-info .section-title { margin-bottom: 28px; }
+
+  .booking-features {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .booking-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(28,58,46,0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .feature-title {
+    font-weight: 500;
+    color: var(--forest);
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+
+  .feature-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #111810;
+    color: rgba(247,243,238,0.5);
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .footer-brand span { color: var(--gold-light); }
+
+  .footer-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    max-width: 280px;
+  }
+
+  .footer-col-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(247,243,238,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold-light); }
+
+  .footer-bottom {
+    background: #0C0F09;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(247,243,238,0.25);
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { display: none; }
+    .hero-left { padding: 100px 24px 60px; }
+    .services { padding: 80px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .about { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
+    .about-accent-box { display: none; }
+    .team { padding: 80px 24px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .testimonials { padding: 80px 24px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .booking { grid-template-columns: 1fr; padding: 80px 24px; }
+    footer { grid-template-columns: 1fr 1fr; padding: 40px 24px; gap: 40px; }
+    .footer-bottom { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Meridian<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#team">Our Team</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#booking" class="nav-cta">Book Appointment</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Trusted since 2008</div>
+    <h1 class="hero-title">
+      Exceptional care,<br>
+      <em>thoughtfully</em><br>
+      delivered.
+    </h1>
+    <p class="hero-sub">
+      Meridian Health Clinic brings together expert physicians and modern medicine to provide compassionate, comprehensive care for every stage of life.
+    </p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn-primary">Book Appointment</a>
+      <a href="#services" class="btn-ghost">Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">4,800+</span>
+        <span class="stat-label">Patients served</span>
+      </div>
+      <div>
+        <span class="stat-num">16</span>
+        <span class="stat-label">Years of care</span>
+      </div>
+      <div>
+        <span class="stat-num">98%</span>
+        <span class="stat-label">Satisfaction rate</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-wrap">
+      <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=900&auto=format&fit=crop&q=80" alt="Clinic interior">
+      <div class="hero-image-overlay"></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-title">Available Today</div>
+      <div class="hero-card-sub">Walk-ins & same-day bookings welcome</div>
+      <div class="availability-dots">
+        <div class="dot active"></div>
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <span class="availability-label">2 physicians on</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Family Medicine <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Preventive Care <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Mental Health <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Sports Medicine <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Chronic Disease Management <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Lab & Diagnostics <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Womens Health <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Pediatrics <span class="marquee-dot">◆</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Family Medicine <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Preventive Care <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Mental Health <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Sports Medicine <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Chronic Disease Management <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Lab & Diagnostics <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Womens Health <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Pediatrics <span class="marquee-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">What we offer</div>
+      <h2 class="section-title">Care for every <em>chapter</em> of your life</h2>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon">🩺</div>
+      <div class="service-num">01</div>
+      <h3 class="service-name">Family Medicine</h3>
+      <p class="service-desc">Comprehensive primary care for patients of all ages. Annual physicals, chronic condition management, and same-day sick visits.</p>
+      <a href="#booking" class="service-link">Book a visit</a>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.1s">
+      <div class="service-icon">🧠</div>
+      <div class="service-num">02</div>
+      <h3 class="service-name">Mental Health</h3>
+      <p class="service-desc">Compassionate mental health support including counselling referrals, medication management, and anxiety and depression care.</p>
+      <a href="#booking" class="service-link">Book a visit</a>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.2s">
+      <div class="service-icon">🏃</div>
+      <div class="service-num">03</div>
+      <h3 class="service-name">Sports Medicine</h3>
+      <p class="service-desc">Injury assessment, rehabilitation planning, and return-to-sport clearance for athletes at every level — weekend warrior to elite.</p>
+      <a href="#booking" class="service-link">Book a visit</a>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.05s">
+      <div class="service-icon">🔬</div>
+      <div class="service-num">04</div>
+      <h3 class="service-name">Lab & Diagnostics</h3>
+      <p class="service-desc">On-site blood work, urinalysis, and rapid testing with fast turnaround times. Results delivered directly to your patient portal.</p>
+      <a href="#booking" class="service-link">Book a visit</a>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.15s">
+      <div class="service-icon">🌸</div>
+      <div class="service-num">05</div>
+      <h3 class="service-name">Women's Health</h3>
+      <p class="service-desc">Pap smears, prenatal referrals, hormonal health consultations, and preventive screenings tailored for women at every age.</p>
+      <a href="#booking" class="service-link">Book a visit</a>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.25s">
+      <div class="service-icon">👶</div>
+      <div class="service-num">06</div>
+      <h3 class="service-name">Pediatrics</h3>
+      <p class="service-desc">Well-baby visits, immunizations, school physicals, and developmental assessments for newborns through adolescents.</p>
+      <a href="#booking" class="service-link">Book a visit</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-image-wrap">
+    <img class="about-image-main" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop&q=80" alt="Clinic team">
+    <div class="about-accent-box">
+      <span class="about-accent-num">16+</span>
+      <span class="about-accent-label">Years serving Hamilton</span>
+    </div>
+  </div>
+  <div class="about-content fade-up">
+    <div class="section-eyebrow">Our story</div>
+    <h2 class="section-title">A clinic built on <em>trust</em></h2>
+    <p class="about-body">
+      Founded in 2008, Meridian Health Clinic began with a simple belief: every patient deserves unhurried, attentive care from a physician who knows their name. Over the past sixteen years, that belief has guided every decision we've made.
+    </p>
+    <p class="about-body">
+      From our OHIP-covered consultations to our extended appointment times, we've built our practice around removing barriers to good healthcare — not adding them.
+    </p>
+    <div class="about-values">
+      <div class="value-item"><div class="value-dot"></div><span class="value-text">Evidence-based practice</span></div>
+      <div class="value-item"><div class="value-dot"></div><span class="value-text">Same-day appointments</span></div>
+      <div class="value-item"><div class="value-dot"></div><span class="value-text">Accepting new patients</span></div>
+      <div class="value-item"><div class="value-dot"></div><span class="value-text">Online patient portal</span></div>
+      <div class="value-item"><div class="value-dot"></div><span class="value-text">Bilingual staff</span></div>
+      <div class="value-item"><div class="value-dot"></div><span class="value-text">Wheelchair accessible</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="section-eyebrow" style="justify-content:center">Meet your physicians</div>
+  <h2 class="section-title" style="max-width:none;margin:0 auto">The people behind your care</h2>
+  <div class="team-grid">
+    <div class="team-card fade-up">
+      <img class="team-photo" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&auto=format&fit=crop&q=80" alt="Dr. Amara Singh">
+      <div class="team-role">Family Physician · Medical Director</div>
+      <h3 class="team-name">Dr. Amara Singh, MD</h3>
+      <p class="team-bio">McMaster graduate with 14 years in family medicine. Special interest in chronic disease prevention and patient education.</p>
+    </div>
+    <div class="team-card fade-up" style="transition-delay:0.1s">
+      <img class="team-photo" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&auto=format&fit=crop&q=80" alt="Dr. James Okafor">
+      <div class="team-role">Sports Medicine Physician</div>
+      <h3 class="team-name">Dr. James Okafor, MD</h3>
+      <p class="team-bio">Former team physician for Ontario track & field. Specializes in musculoskeletal injuries, concussion management, and return-to-sport protocols.</p>
+    </div>
+    <div class="team-card fade-up" style="transition-delay:0.2s">
+      <img class="team-photo" src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=600&auto=format&fit=crop&q=80" alt="Dr. Sofia Chen">
+      <div class="team-role">Women's Health & Pediatrics</div>
+      <h3 class="team-name">Dr. Sofia Chen, MD</h3>
+      <p class="team-bio">Western Medicine graduate with dual expertise in pediatric development and women's health. Fluent in English, Mandarin, and Cantonese.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-eyebrow">Patient reviews</div>
+  <h2 class="section-title">What our patients say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"I've been a patient here for seven years. Dr. Singh actually listens — she remembers details from previous visits and follows up unprompted. Rare in today's healthcare landscape."</p>
+      <div class="testimonial-author">Michelle T.</div>
+      <div class="testimonial-city">Hamilton, ON</div>
+    </div>
+    <div class="testimonial-card fade-up" style="transition-delay:0.1s">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Brought my daughter in for a same-day sick visit on a Friday afternoon. We were seen within 20 minutes. The staff made her feel completely at ease."</p>
+      <div class="testimonial-author">David K.</div>
+      <div class="testimonial-city">Stoney Creek, ON</div>
+    </div>
+    <div class="testimonial-card fade-up" style="transition-delay:0.2s">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"After my hamstring injury, Dr. Okafor had me back training in six weeks. His understanding of athletic recovery is exceptional — highly recommend for any serious athlete."</p>
+      <div class="testimonial-author">Marcus B.</div>
+      <div class="testimonial-city">Burlington, ON</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="booking-info fade-up">
+    <div class="section-eyebrow">Get started</div>
+    <h2 class="section-title">Book your <em>appointment</em></h2>
+    <p style="font-size:15px;color:var(--text-mid);line-height:1.9;margin-bottom:12px">
+      New and returning patients are welcome. OHIP-covered services are available at no cost. We offer morning, afternoon, and select evening appointments.
+    </p>
+    <div class="booking-features">
+      <div class="booking-feature">
+        <div class="feature-icon">📅</div>
+        <div>
+          <div class="feature-title">Same-day availability</div>
+          <div class="feature-desc">Call by 9 AM for same-day sick visits Monday through Friday.</div>
+        </div>
+      </div>
+      <div class="booking-feature">
+        <div class="feature-icon">📱</div>
+        <div>
+          <div class="feature-title">Patient portal</div>
+          <div class="feature-desc">Access your records, lab results, and prescriptions online 24/7.</div>
+        </div>
+      </div>
+      <div class="booking-feature">
+        <div class="feature-icon">🏥</div>
+        <div>
+          <div class="feature-title">Currently accepting</div>
+          <div class="feature-desc">We are currently accepting new patients. Bring your OHIP card.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="booking-form fade-up" style="transition-delay:0.15s">
+    <h3 class="form-title">Request an appointment</h3>
+    <p class="form-sub">Our team will confirm within one business day.</p>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First name</label>
+        <input type="text" placeholder="Jane">
+      </div>
+      <div class="form-group">
+        <label>Last name</label>
+        <input type="text" placeholder="Smith">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" placeholder="jane@email.com">
+    </div>
+    <div class="form-group">
+      <label>Phone number</label>
+      <input type="tel" placeholder="(905) 000-0000">
+    </div>
+    <div class="form-group">
+      <label>Service</label>
+      <select>
+        <option>Select a service...</option>
+        <option>Family Medicine</option>
+        <option>Mental Health</option>
+        <option>Sports Medicine</option>
+        <option>Lab & Diagnostics</option>
+        <option>Women's Health</option>
+        <option>Pediatrics</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Notes (optional)</label>
+      <textarea placeholder="Brief reason for visit..."></textarea>
+    </div>
+    <button class="form-submit" onclick="alert('Demo only — no submission in preview!')">Request Appointment →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Meridian<span>.</span></div>
+    <p class="footer-desc">Compassionate, evidence-based primary care for Hamilton and surrounding communities since 2008.</p>
+  </div>
+  <div>
+    <div class="footer-col-title">Services</div>
+    <ul class="footer-links">
+      <li><a href="#">Family Medicine</a></li>
+      <li><a href="#">Mental Health</a></li>
+      <li><a href="#">Sports Medicine</a></li>
+      <li><a href="#">Lab & Diagnostics</a></li>
+      <li><a href="#">Women's Health</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">Clinic</div>
+    <ul class="footer-links">
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Our Team</a></li>
+      <li><a href="#">Patient Portal</a></li>
+      <li><a href="#">New Patients</a></li>
+      <li><a href="#">Careers</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">Contact</div>
+    <ul class="footer-links">
+      <li><a href="#">123 King St W, Hamilton</a></li>
+      <li><a href="#">(905) 555-0194</a></li>
+      <li><a href="#">hello@meridianclinic.ca</a></li>
+      <li><a href="#" style="margin-top:8px;display:inline-block">Mon–Fri: 8am–6pm</a></li>
+      <li><a href="#">Sat: 9am–1pm</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2024 Meridian Health Clinic. All rights reserved.</span>
+  <span>Privacy Policy · Terms of Use</span>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
